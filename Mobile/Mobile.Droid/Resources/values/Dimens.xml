@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+  <dimen name="example_list_item_margin">0dp</dimen>
+
+  <dimen name="toolbar_title_size">18sp</dimen>
+
+  <dimen name="horizontal_margin">8dp</dimen>
+  <dimen name="vertical_margin">8dp</dimen>
+
+  <dimen name="main_screen_example_category_margin">30dp</dimen>
+  <dimen name="main_screen_heading_font_size">16sp</dimen>
+  <dimen name="main_screen_description_font_size">12sp</dimen>
+</resources>

@@ -1,20 +1,22 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.Timers;
-using System.Drawing;
+﻿using BLE.Client.Droid;
+using BLE.Share.Application;
+using BLE.Share.Data;
+using BLE.Share.Fragments.Base;
 using SciChart.Charting.Model.DataSeries;
 using SciChart.Charting.Visuals;
 using SciChart.Charting.Visuals.Axes;
 using SciChart.Charting.Visuals.RenderableSeries;
 using SciChart.Core.Model;
-using BLE.Share.Application;
-using BLE.Share.Fragments.Base;
-using BLE.Client.Droid;
-using BLE.Share.Data;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Threading.Tasks;
+using System.Timers;
 
 namespace BLE.Share.Fragments.Examples
 {
-    [ExampleDefinition("Heatmap Chart", description:"Demonstrates a Real-time scientific Heatmap", icon: ExampleIcon.HeatmapChart)]
+
+    [ExampleDefinition("Heatmap Chart", description: "Demonstrates a Real-time scientific Heatmap", icon: ExampleIcon.HeatmapChart)]
+    [System.Obsolete]
     public class HeatmapChartFragment : ExampleBaseFragment
     {
         public override int ExampleLayoutId => Resource.Layout.Example_Single_Chart_Fragment;
@@ -27,7 +29,7 @@ namespace BLE.Share.Fragments.Examples
 
         private volatile bool _isRunning = false;
         private readonly object _syncRoot = new object();
-        private readonly Timer _timer = new Timer(40) {AutoReset = true};
+        private readonly Timer _timer = new Timer(40) { AutoReset = true };
 
         private int _timerIndex = 0;
         private readonly UniformHeatmapDataSeries<int, int, double> _dataSeries = new UniformHeatmapDataSeries<int, int, double>(Width, Height);
@@ -38,7 +40,7 @@ namespace BLE.Share.Fragments.Examples
         {
             Task.Run(() =>
             {
-                var array = new double[Width*Height];
+                var array = new double[Width * Height];
 
                 for (var i = 0; i < SeriesPerPeriod; i++)
                 {
@@ -53,6 +55,7 @@ namespace BLE.Share.Fragments.Examples
             });
         }
 
+        [System.Obsolete]
         protected override void InitExample()
         {
             var xAxis = new NumericAxis(Activity);
@@ -60,7 +63,7 @@ namespace BLE.Share.Fragments.Examples
 
             var rs = new FastUniformHeatmapRenderableSeries
             {
-                ColorMap = new ColorMap(new []{Color.DarkBlue, Color.CornflowerBlue, Color.DarkGreen, Color.Chartreuse, Color.Yellow, Color.Red}, new[] {0, 0.2f, 0.4f, 0.6f, 0.8f, 1}),
+                ColorMap = new ColorMap(new[] { Color.DarkBlue, Color.CornflowerBlue, Color.DarkGreen, Color.Chartreuse, Color.Yellow, Color.Red }, new[] { 0, 0.2f, 0.4f, 0.6f, 0.8f, 1 }),
                 Minimum = 0,
                 Maximum = 200,
                 DataSeries = _dataSeries,
@@ -86,7 +89,7 @@ namespace BLE.Share.Fragments.Examples
         {
             lock (_syncRoot)
             {
-                if(!_isRunning) return;
+                if (!_isRunning) return;
 
                 UpdateDataSeries(_timerIndex);
 
@@ -96,10 +99,11 @@ namespace BLE.Share.Fragments.Examples
 
         private void UpdateDataSeries(int index)
         {
-            var values = ValuesList[index%ValuesList.Count];
+            var values = ValuesList[index % ValuesList.Count];
             _dataSeries.UpdateZValues(values);
         }
 
+        [System.Obsolete]
         public override void OnDestroyView()
         {
             base.OnDestroyView();
@@ -109,7 +113,7 @@ namespace BLE.Share.Fragments.Examples
 
         private void Stop()
         {
-            if(!_isRunning) return;
+            if (!_isRunning) return;
 
             _isRunning = false;
             _timer.Stop();

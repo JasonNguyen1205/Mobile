@@ -1,7 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<resources>
-  <item type="color" name="primary">@color/material_grey_300</item>
-	  <item type="color" name="primaryDark">@color/material_grey_800</item>
-		  <item type="color" name="accent">#FFC107</item>
-			  <item type="color" name="window_background">@color/material_grey_600</item>
-</resources>
