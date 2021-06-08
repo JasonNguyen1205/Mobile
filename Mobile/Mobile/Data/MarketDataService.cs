@@ -1,18 +1,21 @@
-﻿using Android.Util;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Timers;
+
 #if __ANDROID__
 
 #endif
 
-namespace Mobile
+namespace Mobile.Droid
 {
     public interface IMarketDataService
     {
         void SubscribePriceUpdate(Action<PriceBar> callback);
+
         IEnumerable<PriceBar> GetHistoricalData(int numberBars);
+
         void ClearSubscriptions();
+
         PriceBar GetNextBar();
     }
 
@@ -38,9 +41,10 @@ namespace Mobile
 
         public void SubscribePriceUpdate(Action<PriceBar> callback)
         {
-            lock (_syncRoot)
+            lock(_syncRoot)
             {
-                if (_isRunning) return;
+                if(_isRunning)
+                    return;
 
                 NewData += (arg) => callback(arg);
 
@@ -55,28 +59,26 @@ namespace Mobile
         {
             try
             {
-                lock (_syncRoot)
+                lock(_syncRoot)
                 {
                     OnTimerElapsed();
                 }
-            }
-            catch (Exception exception)
+            } catch(Exception exception)
             {
-#if __ANDROID__
-                Log.Error("RandomPricesDataSource", exception.Message, exception);
-#elif __IOS__
+
                 Console.WriteLine("RandomPricesDataSource exception message: {0}, exception {1}", exception.Message, exception);
-#endif
+
             }
         }
 
         private void OnTimerElapsed()
         {
-            if (!_isRunning) return;
+            if(!_isRunning)
+                return;
 
             var priceBar = _generator.Tick();
 
-            if (NewData != null)
+            if(NewData != null)
             {
                 NewData(priceBar);
             }
@@ -85,7 +87,7 @@ namespace Mobile
         public IEnumerable<PriceBar> GetHistoricalData(int numberBars)
         {
             var prices = new List<PriceBar>(numberBars);
-            for (var i = 0; i < numberBars; i++)
+            for(var i = 0; i < numberBars; i++)
             {
                 prices.Add(_generator.GetNextData());
             }
@@ -95,9 +97,10 @@ namespace Mobile
 
         public void ClearSubscriptions()
         {
-            lock (_syncRoot)
+            lock(_syncRoot)
             {
-                if (!_isRunning) return;
+                if(!_isRunning)
+                    return;
 
                 _isRunning = false;
                 _timer.Stop();
@@ -106,9 +109,6 @@ namespace Mobile
             }
         }
 
-        public PriceBar GetNextBar()
-        {
-            return _generator.Tick();
-        }
+        public PriceBar GetNextBar() { return _generator.Tick(); }
     }
 }

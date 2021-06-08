@@ -1,5 +1,4 @@
 ﻿using System;
-using Mobile.Pages;
 using Mobile.ViewModels;
 using MvvmCross;
 using MvvmCross.Forms.Core;

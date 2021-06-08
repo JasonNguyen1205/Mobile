@@ -4,7 +4,7 @@ using Android.Views;
 using Android.Widget;
 using AndroidX.Fragment.App;
 
-namespace Mobile
+namespace Mobile.Droid.Fragments.Base
 {
     public abstract class TitlesFragment : Fragment
     {

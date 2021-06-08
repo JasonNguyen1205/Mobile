@@ -1,5 +1,4 @@
 ﻿using Mobile.Object;
-using Mobile.Function;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;

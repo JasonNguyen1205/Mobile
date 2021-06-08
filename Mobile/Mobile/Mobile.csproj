@@ -1,13 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-	<TargetFramework>netstandard2.1</TargetFramework>
+	<TargetFramework>netstandard2.0</TargetFramework>
 	<EnableNETAnalyzers>true</EnableNETAnalyzers>
 	<ApplicationIcon />
 	<Win32Resource />
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-		<DefineConstants></DefineConstants>
+		<DefineConstants>TRACE</DefineConstants>
+		<TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+		<WarningsAsErrors />
+		<Optimize>true</Optimize>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -28,7 +31,7 @@
 		<PackageReference Include="Microsoft.Graph" Version="3.33.0" />
 		<PackageReference Include="MvvmCross" Version="7.1.2" />
 		<PackageReference Include="MvvmCross.Forms" Version="7.1.2" />
-		<PackageReference Include="MvvmCross.Plugin.BLE" Version="2.1.2" />
+		<PackageReference Include="MvvmCross.Plugin.BLE" Version="2.2.0-pre2" />
 		<PackageReference Include="Plugin.BLE" Version="2.1.2" />
 		<PackageReference Include="Plugin.Permissions" Version="6.0.1" />
 		<PackageReference Include="System.Reactive" Version="5.0.0" />
@@ -37,9 +40,18 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Reference Include="Mono.Android">
-			<HintPath>..\..\..\..\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\ReferenceAssemblies\Microsoft\Framework\MonoAndroid\v10.0\Mono.Android.dll</HintPath>
-		</Reference>
+	  <Reference Include="Mono.Android">
+	    <HintPath>..\..\..\..\..\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\ReferenceAssemblies\Microsoft\Framework\MonoAndroid\v10.0\Mono.Android.dll</HintPath>
+	  </Reference>
+	  <Reference Include="Newtonsoft.Json">
+	    <HintPath>..\..\..\..\..\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Sdks\Microsoft.Docker.Sdk\tools\Newtonsoft.Json.dll</HintPath>
+	  </Reference>
+	  <Reference Include="Xamarin.Forms.Platform">
+	    <HintPath>..\..\..\..\..\Program Files (x86)\Microsoft\Xamarin\NuGet\xamarin.forms\5.0.0.2012\lib\MonoAndroid10.0\Xamarin.Forms.Platform.dll</HintPath>
+	  </Reference>
+	  <Reference Include="Xamarin.Forms.Platform.Android">
+	    <HintPath>..\..\..\..\..\Program Files (x86)\Microsoft\Xamarin\NuGet\xamarin.forms\5.0.0.2012\lib\MonoAndroid10.0\Xamarin.Forms.Platform.Android.dll</HintPath>
+	  </Reference>
 	</ItemGroup>
 
 	<ItemGroup>

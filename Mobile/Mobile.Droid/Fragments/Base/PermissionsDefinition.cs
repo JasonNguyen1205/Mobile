@@ -1,6 +1,7 @@
 ﻿using System;
 
-namespace Mobile {
+namespace Mobile.Droid.Fragments.Base
+{
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = false)]
     public class PermissionsDefinition : Attribute
     {

@@ -1,34 +1,24 @@
-using System;
-using System.Timers;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using Acr.UserDialogs;
+using static Xamarin.Forms.PlatformConfiguration.Android;
 using Mobile.Function;
-using Mobile.Log;
 using Mobile.Object;
+using Mobile.Utils;
 using MvvmCross;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
-using Plugin.BLE.Abstractions;
 using Plugin.BLE.Abstractions.Contracts;
 using Plugin.BLE.Abstractions.EventArgs;
 using Plugin.BLE.Abstractions.Extensions;
-using Trace = Plugin.BLE.Abstractions.Trace;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using Xamarin.Forms;
-using Android.OS;
-using Android.Content;
 using Debug = System.Diagnostics.Debug;
 using IAdapter = Plugin.BLE.Abstractions.Contracts.IAdapter;
-using Android.App;
-using Android;
-using Mobile;
-using Mobile.Utils;
 
 namespace Mobile.ViewModels
 {
@@ -59,13 +49,13 @@ namespace Mobile.ViewModels
         // Communication Pair
         //
         BleTempScan bts = new BleTempScan();
-        Temp TempData;
         double[,] intensities;
         int count = 1;
         DataManager dataManager;
         ColorUtil colorUtil;
+
         //
-        
+
         BleMoveData moveData = new BleMoveData();
 
         public string Permissions
@@ -75,9 +65,9 @@ namespace Mobile.ViewModels
                 if (Characteristic == null)
                     return string.Empty;
 
-                return (Characteristic.CanRead ? "Read " : "") +
-                       (Characteristic.CanWrite ? "Write " : "") +
-                       (Characteristic.CanUpdate ? "Update" : "");
+                return (Characteristic.CanRead ? "Read " : string.Empty) +
+                       (Characteristic.CanWrite ? "Write " : string.Empty) +
+                       (Characteristic.CanUpdate ? "Update" : string.Empty);
             }
         }
 
@@ -114,8 +104,8 @@ namespace Mobile.ViewModels
                 }
             }
             //LoadCommunicationPair();
-            CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
-            CancellationToken cancellationToken = cancellationTokenSource.Token;
+            //CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+            //CancellationToken cancellationToken = cancellationTokenSource.Token;
 
             //await Task.Delay(1000).ContinueWith(async (t) =>
             //{
@@ -395,7 +385,7 @@ namespace Mobile.ViewModels
                         //Messages.Insert(0, $"Start getting:  {cmd}");
                         if (cmd == BleCommand.BLE_CMD_TEMP_00_07)
                         {
-                           intensities = new double[8, 8];  
+                            intensities = new double[8, 8];
                         }
 
                         BleTempData tempData_ = new BleTempData();
@@ -500,13 +490,13 @@ namespace Mobile.ViewModels
             var navigation = Mvx.IoCProvider.Resolve<IMvxNavigationService>();
             Debug.WriteLine("Ok");
             if (Characteristic != null)
-                await navigation.Navigate<LoadMoveModel, MvxBundle>(new MvxBundle(new Dictionary<string, string> { { "", "" } }));
+                await navigation.Navigate<LoadMoveModel, MvxBundle>(new MvxBundle(new Dictionary<string, string> { { string.Empty, string.Empty } }));
             await navigation.Close(this);
         }
 
 
 
-      
+
     }
 }
 //    public class LoadTempModel : BaseViewModel

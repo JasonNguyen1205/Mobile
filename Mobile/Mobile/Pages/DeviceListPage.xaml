@@ -12,7 +12,7 @@
      <DataTemplate x:Key="DeviceItemTemplate">
               <ViewCell>
                 <ViewCell.ContextActions>
-                  <MenuItem Command="{Binding Path=BindingContext.DisconnectCommand, Source={x:Reference DevicePage}}"
+                  <MenuItem zx ZzZ="{Binding Path=BindingContext.DisconnectCommand, Source={x:Reference DevicePage}}"
                             CommandParameter="{Binding .}" IsDestructive="True"
                             Text="Disconnect"/>
                 </ViewCell.ContextActions>

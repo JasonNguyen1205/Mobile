@@ -1,4 +1,5 @@
-﻿using SciChart.Charting.Model.DataSeries;
+﻿using Mobile.Droid.Fragments.Base;
+using SciChart.Charting.Model.DataSeries;
 using SciChart.Charting.Visuals;
 using SciChart.Charting.Visuals.Axes;
 using SciChart.Charting.Visuals.RenderableSeries;
@@ -8,7 +9,7 @@ using System.Drawing;
 using System.Threading.Tasks;
 using System.Timers;
 
-namespace Mobile
+namespace Mobile.Droid.Fragments.BLE
 {
     [Definition2D("Heatmap Chart", description: "Demonstrates a Real-time scientific Heatmap", icon:BLEDefine.HeatmapChart)]
     public abstract class HeatmapChartFragment : TitlesFragment

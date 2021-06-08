@@ -369,7 +369,7 @@ namespace Mobile.ViewModels
             CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
             CancellationToken cancellationToken = cancellationTokenSource.Token;
 
-            Task.Delay(2000).ContinueWith(async (t) =>
+            Task.Delay(2000).ContinueWith((t) =>
             {
                 WriteTempSync();
             }, cancellationToken);
